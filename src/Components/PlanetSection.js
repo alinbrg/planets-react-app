@@ -26,10 +26,19 @@ export default function PlanetSection({ dataToUse }) {
 
 		setDesc(planetDesc);
 		setSource(sourceLink);
+
+		const newBtnData = btnData.map((btn) => {
+			return btn.id === id
+				? { ...btn, active: true }
+				: { ...btn, active: false };
+		});
+
+		// console.log(newBtnData);
+		setBtnData(newBtnData);
 	}
 
 	useEffect(() => {
-		console.log(dataToUse);
+		// console.log(dataToUse);
 
 		dataToUse && setImgSrc(dataToUse?.images?.overview);
 		dataToUse && setDesc(dataToUse?.overview?.content);
@@ -93,7 +102,7 @@ export default function PlanetSection({ dataToUse }) {
 												onClick={showOverview}
 												className={btn.active ? "active" : ""}
 											>
-												<span>0{i}.</span> {btn.name}
+												<span>0{i + 1}.</span> {btn.name}
 											</button>
 										);
 									})}

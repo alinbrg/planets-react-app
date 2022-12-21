@@ -176,7 +176,8 @@ body {
 							color: rgba($color: $primary-color, $alpha: 0.5);
 						}
 						text-transform: uppercase;
-
+						font-weight: 600;
+						font-size: 1rem;
 						cursor: pointer;
 						transition: all 0.5s;
 						&:hover {
