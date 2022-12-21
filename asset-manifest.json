@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/planets-react-app/static/css/main.82d33a29.css",
-    "main.js": "/planets-react-app/static/js/main.8fd6cd12.js",
+    "main.js": "/planets-react-app/static/js/main.8039f7f3.js",
     "static/js/787.3441728c.chunk.js": "/planets-react-app/static/js/787.3441728c.chunk.js",
     "static/media/background-stars.svg": "/planets-react-app/static/media/background-stars.f6233a6a8d2351c57f2b.svg",
     "index.html": "/planets-react-app/index.html",
     "static/media/icon-source.svg": "/planets-react-app/static/media/icon-source.90231c6845b7449a736412f3da2e3aaa.svg",
     "static/media/icon-hamburger.svg": "/planets-react-app/static/media/icon-hamburger.05a40a49142005f6faf230286ab38214.svg",
     "main.82d33a29.css.map": "/planets-react-app/static/css/main.82d33a29.css.map",
-    "main.8fd6cd12.js.map": "/planets-react-app/static/js/main.8fd6cd12.js.map",
+    "main.8039f7f3.js.map": "/planets-react-app/static/js/main.8039f7f3.js.map",
     "787.3441728c.chunk.js.map": "/planets-react-app/static/js/787.3441728c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.82d33a29.css",
-    "static/js/main.8fd6cd12.js"
+    "static/js/main.8039f7f3.js"
   ]
 }
