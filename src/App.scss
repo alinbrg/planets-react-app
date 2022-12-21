@@ -14,6 +14,26 @@ $primary-color: #fff;
 	font-family: "Roboto", sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #7f7fc0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(135deg, darkblue, purple);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(135deg, purple, darkblue);
+}
+
 @mixin theme($theme: DarkGray) {
 	background: $theme;
 	box-shadow: 0 0 1px rgba($theme, 0.25);
@@ -59,25 +79,29 @@ body {
 		}
 	}
 	header {
-		border-bottom: 1px solid $primary-color;
-		padding: 2rem 0;
-		h2 {
-			background: linear-gradient(90deg, blue, purple);
-			font-weight: 900;
-			background-clip: text;
-			-webkit-background-clip: text;
-			color: transparent;
-			font-size: 2rem;
-			font-family: "Rubik Vinyl", cursive;
-			&:hover {
-				background: linear-gradient(90deg, purple, darkblue);
+		a {
+			h2 {
+				background: linear-gradient(90deg, blue, purple);
+				font-weight: 900;
 				background-clip: text;
 				-webkit-background-clip: text;
+				color: transparent;
+				font-size: 2rem;
+				font-family: "Rubik Vinyl", cursive;
+				&:hover {
+					background: linear-gradient(90deg, purple, darkblue);
+					background-clip: text;
+					-webkit-background-clip: text;
+				}
 			}
 		}
 		div {
 			@include d-flex($align: center, $justify: space-between);
 			@extend %container;
+			border-bottom: 1px solid $primary-color;
+
+			padding-top: 2rem;
+			padding-bottom: 2rem;
 			nav {
 				ul {
 					@include d-flex();
@@ -86,12 +110,13 @@ body {
 						a {
 							text-transform: uppercase;
 							font-weight: 600;
-							color: rgba($color: $primary-color, $alpha: 0.6);
+							color: rgba($color: $primary-color, $alpha: 0.4);
+							position: relative;
 							&::after {
 								content: "";
 								width: 0;
 								height: 1px;
-								background-color: rgba($color: $primary-color, $alpha: 0.6);
+								background-color: rgba($color: $primary-color, $alpha: 0.4);
 								position: absolute;
 								left: 50%;
 								bottom: -0.7rem;
@@ -106,7 +131,7 @@ body {
 									background-color: rgba($color: $primary-color, $alpha: 1);
 								}
 							}
-							position: relative;
+
 							&:hover {
 								&::after {
 									width: 70%;
@@ -123,9 +148,76 @@ body {
 				outline: none;
 			}
 			@media (max-width: 1024px) {
+				flex-direction: column;
+				a {
+					h2 {
+						margin-bottom: 2rem;
+					}
+				}
+			}
+			@media (max-width: 768px) {
+				top: 0;
+				left: 0;
+				flex-wrap: wrap;
+				flex-direction: row;
+				align-items: center;
+				overflow: hidden;
+
+				width: 100%;
+				a {
+					h2 {
+						margin-bottom: 0;
+					}
+				}
+				&.active {
+					padding: 2rem 1.5rem;
+					// position: absolute;
+					z-index: 5;
+					display: flex;
+					border-bottom: none;
+
+					nav {
+						display: block;
+					}
+				}
 				nav {
 					display: none;
+					z-index: 2;
+					width: 100%;
+					position: relative;
+					margin-top: 2rem;
+					&:before {
+						content: "";
+						width: calc(100% + 3rem);
+						height: 1px;
+						background: rgba($color: $primary-color, $alpha: 1);
+						display: block;
+						position: absolute;
+						top: 0;
+						left: -1.5rem;
+					}
+
+					ul {
+						height: 100%;
+						flex-direction: column;
+						justify-content: start;
+
+						li {
+							margin: 0;
+							border-bottom: 1px solid rgba($color: $primary-color, $alpha: 0.6);
+							padding: 1.4rem 0;
+							width: 100%;
+							text-align: center;
+							a {
+								font-size: 1.4rem;
+								&:after {
+									display: none;
+								}
+							}
+						}
+					}
 				}
+
 				.burger {
 					display: block;
 				}
@@ -138,8 +230,8 @@ body {
 			@extend %container;
 			.overal {
 				display: grid;
-				grid-template-columns: 60% 30%;
-				gap: 10%;
+				grid-template-columns: 60% 35%;
+				gap: 5%;
 				h2 {
 					font-size: 5rem;
 				}
@@ -162,30 +254,36 @@ body {
 						transform: translateX(-50%);
 					}
 				}
-				.action-btns {
-					margin-top: 1rem;
-					button {
-						padding: 1rem;
-						border: 1px solid rgba($color: $primary-color, $alpha: 0.7);
-						background-color: transparent;
-						outline: none;
-						display: block;
-						margin-bottom: 1rem;
-						width: 100%;
-						span {
-							color: rgba($color: $primary-color, $alpha: 0.5);
-						}
-						text-transform: uppercase;
-						font-weight: 600;
-						font-size: 1rem;
-						cursor: pointer;
-						transition: all 0.5s;
-						&:hover {
-							background: linear-gradient(90deg, rgb(1, 1, 26), darkblue);
-						}
-						&.active {
-							background: linear-gradient(90deg, darkblue, rgb(1, 1, 26));
-						}
+			}
+			.action-btns {
+				margin-top: 1rem;
+				&.mob {
+					display: none;
+				}
+				button {
+					padding: 1rem;
+					border: 1px solid rgba($color: $primary-color, $alpha: 0.7);
+					background-color: transparent;
+					outline: none;
+					display: block;
+					margin-bottom: 1rem;
+					width: 100%;
+
+					text-transform: uppercase;
+					font-weight: 600;
+					font-size: 1rem;
+					cursor: pointer;
+					transition: all 0.5s;
+
+					color: rgba($color: $primary-color, $alpha: 0.5);
+
+					&:hover {
+						background: linear-gradient(90deg, rgb(1, 1, 26), darkblue);
+					}
+					&.active {
+						background: linear-gradient(90deg, darkblue, rgb(1, 1, 26));
+
+						color: rgba($color: $primary-color, $alpha: 1);
 					}
 				}
 			}
@@ -220,21 +318,47 @@ body {
 				.overal {
 					grid-template-columns: 100%;
 					gap: 1rem;
-					h2 {
-						font-size: 3rem;
-					}
-					p {
-						font-size: 1.2rem;
-					}
+
 					.img {
 						img {
 							max-width: 400px;
 							width: 100%;
 						}
+						.geology {
+							max-height: 200px;
+							object-fit: contain;
+						}
+					}
+
+					.info {
+						h2 {
+							font-size: 3rem;
+							margin-bottom: 1rem;
+						}
+						p {
+							font-size: 1.2rem;
+						}
 					}
 				}
 				.stats {
 					margin-top: 3rem;
+				}
+				.action-btns {
+					&.desktop {
+						display: none;
+					}
+					&.mob {
+						display: block;
+						margin-top: 0;
+						margin-bottom: 2rem;
+					}
+				}
+			}
+		}
+		@media (max-width: 768px) {
+			.container {
+				.stats {
+					grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 				}
 			}
 		}

@@ -9,8 +9,7 @@ import data from "../data.json";
 export default function Planet() {
 	const { planetName } = useParams();
 	const [dataToUse, setDataToUse] = useState(null);
-
-	// const dataToUse = data.find((el) => el.name === planetName);
+	// console.log(activeNav);
 
 	useEffect(() => {
 		setDataToUse(data.find((el) => el.name === planetName));

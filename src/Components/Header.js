@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import burger from "../assets/icon-hamburger.svg";
-export default function Header() {
+export default function Header({ activeNav, setActiveNav }) {
 	const planets = [
 		"Mercury",
 		"Venus",
@@ -11,13 +11,21 @@ export default function Header() {
 		"Uranus",
 		"Neptune",
 	];
+
 	return (
 		<>
 			<header>
-				<div>
+				<div className={activeNav ? "active" : ""}>
 					<Link to={`/`}>
 						<h2>PLANETS</h2>
 					</Link>
+
+					<button
+						className="burger"
+						onClick={() => setActiveNav((old) => !old)}
+					>
+						<img src={burger} alt="burger" />
+					</button>
 
 					<nav>
 						<ul>
@@ -26,6 +34,7 @@ export default function Header() {
 									<NavLink
 										to={`/planet/${planet}`}
 										className={({ isActive }) => (isActive ? "active" : "")}
+										onClick={() => setActiveNav(false)}
 									>
 										{planet}
 									</NavLink>
@@ -33,10 +42,6 @@ export default function Header() {
 							))}
 						</ul>
 					</nav>
-
-					<button className="burger">
-						<img src={burger} alt="burger" />
-					</button>
 				</div>
 			</header>
 		</>

@@ -9,13 +9,15 @@ export default function PlanetSection({ dataToUse }) {
 	const [btnData, setBtnData] = useState([]);
 
 	function showOverview(e) {
+		e.stopPropagation();
+
 		const id = e.target.dataset.btnId;
 		const planetDesc = dataToUse[id]?.content;
 
 		const sourceLink = dataToUse[id]?.source;
 
 		if (id === "geology") {
-			const secImg = dataToUse?.images[e.target.dataset.btnId];
+			const secImg = dataToUse?.images[id];
 			setImgSrc(dataToUse?.images?.overview);
 			setSecImgSrc(secImg);
 		} else {
@@ -72,6 +74,23 @@ export default function PlanetSection({ dataToUse }) {
 			<section className="planet-section">
 				{dataToUse && (
 					<div className="container">
+						{window.innerWidth <= 1024 && (
+							<div className="action-btns mob">
+								{(btnData || []).map((btn, i) => {
+									return (
+										<button
+											data-btn-id={btn.id}
+											key={btn.id}
+											onClick={showOverview}
+											className={btn.active ? "active" : ""}
+										>
+											0{i + 1}. {btn.name}
+										</button>
+									);
+								})}
+							</div>
+						)}
+
 						<div className="overal">
 							<div className="img">
 								<img src={"." + imgSrc} alt={dataToUse?.name} />
@@ -79,36 +98,39 @@ export default function PlanetSection({ dataToUse }) {
 									<img
 										className="geology"
 										src={"." + secImgSrc}
-										alt={dataToUse?.name}
+										alt={dataToUse?.name + "'s surface geology"}
 									/>
 								)}
 							</div>
 							<div className="info">
 								<h2>{dataToUse?.name}</h2>
 								<p>{desc}</p>
-								<div>
+								<div className="source">
 									<span>Source :</span>
 									<a target="_blank" href={source} rel="noreferrer">
 										{" "}
 										Wikipedia
 									</a>
 								</div>
-								<div className="action-btns">
-									{(btnData || []).map((btn, i) => {
-										return (
-											<button
-												data-btn-id={btn.id}
-												key={btn.id}
-												onClick={showOverview}
-												className={btn.active ? "active" : ""}
-											>
-												<span>0{i + 1}.</span> {btn.name}
-											</button>
-										);
-									})}
-								</div>
+								{window.innerWidth > 1024 && (
+									<div className="action-btns desktop">
+										{(btnData || []).map((btn, i) => {
+											return (
+												<button
+													data-btn-id={btn.id}
+													key={btn.id}
+													onClick={showOverview}
+													className={btn.active ? "active" : ""}
+												>
+													0{i + 1}. {btn.name}
+												</button>
+											);
+										})}
+									</div>
+								)}
 							</div>
 						</div>
+
 						<div className="stats">
 							<div>
 								<h5>Rotation time</h5>
