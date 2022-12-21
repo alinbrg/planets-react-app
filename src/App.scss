@@ -54,7 +54,7 @@ $primary-color: #fff;
 }
 
 body {
-	font: 100%;
+	font-size: 100%;
 	color: $primary-color;
 	background-color: #070724;
 	background-image: url("../public/assets/background-stars.svg");
@@ -252,6 +252,12 @@ body {
 						bottom: 0;
 						left: 50%;
 						transform: translateX(-50%);
+					}
+				}
+				.source {
+					img,
+					a {
+						margin-left: 0.5rem;
 					}
 				}
 			}

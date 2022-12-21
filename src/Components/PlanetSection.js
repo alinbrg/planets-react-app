@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import sourceIcon from "../assets/icon-source.svg";
 export default function PlanetSection({ dataToUse }) {
 	const [imgSrc, setImgSrc] = useState("");
 	const [secImgSrc, setSecImgSrc] = useState("");
@@ -110,6 +110,7 @@ export default function PlanetSection({ dataToUse }) {
 									<a target="_blank" href={source} rel="noreferrer">
 										{" "}
 										Wikipedia
+										<img src={sourceIcon} alt="icon" />
 									</a>
 								</div>
 								{window.innerWidth > 1024 && (
