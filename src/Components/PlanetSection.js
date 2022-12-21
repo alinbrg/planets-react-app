@@ -93,11 +93,11 @@ export default function PlanetSection({ dataToUse }) {
 
 						<div className="overal">
 							<div className="img">
-								<img src={"." + imgSrc} alt={dataToUse?.name} />
+								<img src={imgSrc} alt={dataToUse?.name} />
 								{secImgSrc !== "" && (
 									<img
 										className="geology"
-										src={"." + secImgSrc}
+										src={secImgSrc}
 										alt={dataToUse?.name + "'s surface geology"}
 									/>
 								)}
